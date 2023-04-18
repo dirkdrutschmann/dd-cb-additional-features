@@ -1,0 +1,17 @@
+<div class="widget_custom">
+{% if user %}
+<h4>{{ user.user_firstname}}&nbsp;{{ user.user_lastname }}</h4>
+<div ><a class="button-link" href="{{ booking|raw }}">meine Buchungen</a></div>
+{% if not konto == false %}
+<div ><a class="button-link" href="{{ konto|raw }}">mein Konto</a></div>
+{% endif %}
+<div ><a class="button-link" href="{{ profil|raw }}">mein Profil</a></div>
+<div ><a class="button-link" href="{{ logout|raw }}">abmelden</a></div>
+</div>
+{% else %}
+    <h4>Sie sind nicht angemeldet</h4>
+    <div><a class="button-link" href="{{ login|raw }}">Anmelden</a></div>
+    <div><a class="button-link" href="{{ register|raw }}">Registrieren</a></div>
+    </div>
+{% endif %}
+{{ commercial|raw }}

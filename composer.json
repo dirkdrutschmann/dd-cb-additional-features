@@ -1,0 +1,26 @@
+{
+  "name": "ddvelop/commonbookings_additional_features",
+  "description": "Zusatz",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^2.3"
+  },
+  "config":{"platform":{
+    "php":"7.4.0"}
+  },
+  "autoload": {
+    "psr-4": {
+      "CommonbookingsAdditionalFeatures\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "dirkdrutschmann",
+      "email": "dirkdrutschmann@gmail.com"
+    }
+  ],
+  "require": {
+    "yahnis-elsts/plugin-update-checker": "^4.11",
+    "twig/twig": "^3.3",
+    "twig/extra-bundle": "^3.3"
+  }
+}

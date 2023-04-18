@@ -1,0 +1,66 @@
+<table role='table' id='history'>
+	<thead role='rowgroup'>
+		<tr role='row'>
+			<th role='columnheader'>Abholstation</th>
+			<th role='columnheader'>Ausleihe</th>
+			<th role='columnheader'>Leihdauer</th>
+			<th role='columnheader'>Produkt</th>
+			<th role='columnheader'>Status</th>
+			<th role='columnheader'>Link</th>
+		</tr>
+	</thead>
+	<tbody role='rowgroup'>
+		{% for booking in bookings %}
+			<tr role='row'>
+				<td role='cell'>{{ booking.locationName}}</td>
+				<td role='cell'>{{ booking.dateStart }}
+					{% if not booking.fullDay %}
+						&nbsp;{{ booking.startTime }}
+					{% endif %}
+				</td>
+				<td role='cell'>{{ booking.buchungsDauer }}</td>
+				<td role='cell'>{{ booking.itemName }}</td>
+				{% if booking.postStatus == 'canceled' %}
+					<td role='cell'>
+						<span>storniert</span>
+					</td>
+					<td role='cell' class='link-table'>
+						<a href='{{ booking.link }}' style='text-decoration:none;'>
+							<div class='table-link'>anzeigen</div>
+						</a>
+					</td>
+				{% elseif booking.postStatus == 'confirmed' %}
+					<td role='cell'>
+						<span>bestätigt</span>
+					</td>
+					<td role='cell' class='link-table'>
+						<a href='{{ booking.link }}' style='text-decoration:none;'>
+							<div class='table-link'>anzeigen</div>
+						</a>
+					</td>
+				{% elseif booking.postStatus == 'past' %}
+					<td role='cell'>
+						<span>vergangen</span>
+					</td>
+					<td role='cell' class='link-table'></td>
+				{% else %}
+					<td role='cell'>
+						<span>vergangen</span>
+					</td>
+					<td role='cell' class='link-table empty-table'></td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<script>
+	jQuery(document).ready(function ($) {
+$('#history').DataTable({
+ordering: true,
+language: {
+url: '{{ path }}'
+},
+info: false
+});
+});
+</script>

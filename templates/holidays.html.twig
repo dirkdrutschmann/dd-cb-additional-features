@@ -1,0 +1,42 @@
+<div class="wrap">
+	<h2>CommonBookings Additional Features</h2>
+	<hr>
+		<p></p>
+		<form id="timeframe" method="post" action="{{ admin_post_url}}">
+			<h2>Feiertage einfügen</h2>
+			{% if error %}
+				<div class="notice notice-error">
+					<p>
+						<strong>
+							{{ error }}</strong>
+					</p>
+				</div>
+			{% endif %}
+			{% if success %}
+				<div class="notice notice-success">
+					<p>
+						<strong>
+							{{ success }}</strong>
+					</p>
+				</div>
+			{% endif %}
+			<p>
+				Mithilfe dieses Tools können automatisch die Feiertage für das  Bundesland (PLZ aus Location)
+																        als "Urlaub" eingetragen - Funktioniert nur für Deutschland.</p>
+
+			<select class="select-timeframes" name="timeframes[]" multiple="multiple" style="width: 100%">
+			{% for timeframe  in timeframes %}
+				<option value="{{ timeframe.id }}">{{ timeframe.locationName|raw }}</option>
+				{% endfor %}
+			</select>
+
+			<input type="hidden" name="action" value="update_timeframe">
+			{{ nonce_field|raw }}
+			{{ submit|raw }}
+		</form>
+	</div>
+<script>
+jQuery(document).ready(function() {
+    jQuery('.select-timeframes').select2();
+});
+</script>

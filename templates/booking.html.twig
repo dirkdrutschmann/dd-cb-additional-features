@@ -1,0 +1,37 @@
+<div class='card_area'>
+	{% for booking in bookings %}
+		<div class='widget_card'>
+			<img src='{{ booking.picture }}'>
+			<h4>
+				{{booking.dateStart}}
+			</h4>
+			<div class='widget-card'>
+				<strong>
+					{{booking.itemName}}
+				</strong>
+			</div>
+			<div class='widget-card'>
+				<strong>
+					{{ booking.locationName }}
+				</strong>
+			</div>
+			<div class='widget-card'>
+				{% if booking.fullday %}
+					$<strong>{{ booking.startTime }}
+					</strong>&nbsp;Uhr';
+				{% endif %}
+			</div>
+			<div class='widget-card'>
+				<a href='{{ booking.link }}' class='button-link'>Buchung anzeigen</a>
+			</div>
+		</div><br/>
+	{% else %}
+		<div class='widget-card'>
+			<h4>Bisher sind keine Buchungen vorhanden!</h4>
+		</div>
+	{% endfor %}
+
+</div>
+<a href="{{ historie }}">
+	<div class='button-history'>Buchungshistorie</div>
+	</a>
